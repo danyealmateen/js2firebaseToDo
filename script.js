@@ -17,13 +17,12 @@ async function getData() {
 
     userInfoDiv.innerHTML = `<h4>Name: ${ele[1].name}</h4><h4>Role: ${ele[1].role}</h4>`;
     userObj = ele[1].name;
-    task.innerHTML = `<h4>Task: ${userTodo}</h4>`;
+    task.innerHTML = `<h4>Task: ${userTodo} Done: ${userDone}</h4>`;
   });
 }
 
-getData();
 //Patcha;
-
+getData();
 task.addEventListener("click", () => {
   async function patchUserInfo(obj) {
     const url = baseUrl + `user1/todo/.json`;
@@ -39,19 +38,17 @@ task.addEventListener("click", () => {
     console.log(data);
     console.log(obj);
   }
+
   let userObj = {
-    done: false,
+    done: true,
     task: "cleaned",
   };
 
-  if (userObj.done === false) {
-    userObj.done = true;
-    userObj.task = `Cleaned!`;
+  if (userObj.done === true) {
+    userObj.done = false;
+    userObj.task = `Cleaned!!!`;
     task.style.textDecoration = "line-through";
   }
-
-  userObj.done = true;
-
-  patchUserInfo(userObj);
   getData();
+  patchUserInfo(userObj);
 });
