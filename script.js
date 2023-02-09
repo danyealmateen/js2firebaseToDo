@@ -3,7 +3,6 @@ const baseUrl =
 
 let userInfoDiv = document.getElementById("userInfoDiv");
 let task = document.getElementById("taskHeader");
-let button = document.getElementById("button");
 
 async function getData() {
   const url = baseUrl + ".json";
@@ -18,14 +17,14 @@ async function getData() {
 
     userInfoDiv.innerHTML = `<h4>Name: ${ele[1].name}</h4><h4>Role: ${ele[1].role}</h4>`;
     userObj = ele[1].name;
-    task.innerHTML = `<h4>Task: ${userTodo}</h4><h4>${userDone}`;
+    task.innerHTML = `<h4>Task: ${userTodo}</h4>`;
   });
 }
 
 getData();
 //Patcha;
 
-button.addEventListener("click", () => {
+task.addEventListener("click", () => {
   async function patchUserInfo(obj) {
     const url = baseUrl + `user1/todo/.json`;
 
@@ -47,8 +46,8 @@ button.addEventListener("click", () => {
 
   if (userObj.done === false) {
     userObj.done = true;
-    userObj.task = `CLEANED!`;
-    console.log("Trueeee and done");
+    userObj.task = `Cleaned!`;
+    task.style.textDecoration = "line-through";
   }
 
   userObj.done = true;
